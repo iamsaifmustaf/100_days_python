@@ -3,11 +3,18 @@ import hangman_pics
 from art import *
 import random
 import time
-from os import system
+import os
+import sys
 
 word = ""
 final_answer = []
 hangman_steps = 0
+
+
+def restart():
+    os.system("cls")
+    os.execv(sys.executable, ["python"] + sys.argv)
+
 
 def check_input(char):
     if char in word:
@@ -51,12 +58,20 @@ if category == 2:
 
 word = word.lower()
 
-system("cls")
+os.system("cls")
 
 while hangman_steps < 7:
     time.sleep(1.5)
-    system('cls')
-    character = input("Please enter your character of choice: ")
-    check_input(character)
+    os.system("cls")
+    print(word)
+    if "_" not in final_answer:
+        print(f"\n\nThe word is {word}. Congrats, You won the game\n\n")
+        time.sleep(1)
+        restart()
+    else:
+        character = input("Please enter your character of choice: ")
+        check_input(character)
 
 print(f"\n\nThe word is {word}. Game Over, Better Luck Next Time!\n\n")
+time.sleep(2)
+restart()
