@@ -63,7 +63,6 @@ os.system("cls")
 while hangman_steps < 7:
     time.sleep(1.5)
     os.system("cls")
-    print(word)
     if "_" not in final_answer:
         print(f"\n\nThe word is {word}. Congrats, You won the game\n\n")
         time.sleep(1)
