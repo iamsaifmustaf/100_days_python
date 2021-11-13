@@ -5,6 +5,7 @@ import time
 result = 0
 
 def calculator(num1 = 0):
+    """Calculator Function, Default First Number is 0."""
     tprint("Calculator")
     time.sleep(1)
     if num1 == 0:
