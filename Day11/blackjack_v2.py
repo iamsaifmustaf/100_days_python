@@ -34,9 +34,9 @@ def compare_scores(score1,score2):
         return 2 : Draw Game
         return 3 : Continue Game'''
    
-    if(score2 > 21 or score1 < 21 and abs(score1-21) < abs(score2-21)):
+    if(score2 > 21 or score1 <= 21 and abs(score1-21) < abs(score2-21)):
         return 0
-    elif (score1 > 21 or score2 < 21 and abs(score2-21) < abs(score1-21)):
+    elif (score1 > 21 or score2 <= 21 and abs(score2-21) < abs(score1-21)):
         return 1
     elif (score2 == score1):
         return 2
@@ -70,7 +70,7 @@ def blackjack():
         tprint("\n\nDealer Wins\n\n")
         total_balance -= bet_size
         time.sleep(1)
-        print(f"Total Balance =====> {total_balance}\n\n")
+        print(f"Total Balance =====> ${total_balance}\n\n")
         time.sleep(3)
         return
     elif (calculate_score(game_cards["player_cards"]) == 0):
@@ -78,7 +78,7 @@ def blackjack():
         tprint("\n\nPlayer Wins\n\n")
         total_balance += bet_size * 2
         time.sleep(1)
-        print(f"Total Balance =====> {total_balance}\n\n")
+        print(f"Total Balance =====> ${total_balance}\n\n")
         time.sleep(3)
         return
     else:
@@ -103,7 +103,7 @@ def blackjack():
         tprint("\n\nDealer Wins\n\n")
         total_balance -= bet_size
         time.sleep(1)
-        print(f"Total Balance =====> {total_balance}\n\n")
+        print(f"Total Balance =====> ${total_balance}\n\n")
         time.sleep(3)
     elif (compare_scores(sum(game_cards["dealer_cards"]),sum(game_cards["player_cards"])) == 1):
         print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
@@ -111,13 +111,16 @@ def blackjack():
         tprint("\n\nPlayer Wins\n\n")
         total_balance += bet_size * 2
         time.sleep(1)
-        print(f"Total Balance =====> {total_balance}\n\n")
+        print(f"Total Balance =====> ${total_balance}\n\n")
         time.sleep(3)
-    else:
+    elif (compare_scores(sum(game_cards["dealer_cards"]),sum(game_cards["player_cards"])) == 2):
         print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
         time.sleep(1)
         tprint("\n\nDRAW\n\n")
         time.sleep(3)
+    else:
+        print('error occured, try again later!')
+        return
 
 blackjack()
 while (input("Do you want to play again? Enter -n- for yes and -y- for no: ") == "y"):
