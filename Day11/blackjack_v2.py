@@ -29,21 +29,21 @@ def compare_scores(score1,score2):
         
         return 0 : Dealer Wins
         return 1 : Player Wins
-        return 2 : Draw Game'''
+        return 2 : Draw Game
+        return 3 : Continue Game'''
    
     if(score1 > 21 or score1 < 21 and (abs(score1)-21) < (abs(score2)-21)):
         return 0
-
     elif (score2 > 21 or score2 < 21 and (abs(score2)-21) < (abs(score1)-21)):
         return 1
-    else:
+    elif (score2 == score1):
         return 2
+    else:
+        return 3
 
 def game_update():
     print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(calculate_score(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards'][0]}] ====> Total: {game_cards['dealer_cards'][0]}\n\n")
-    if calculate_score(game_cards['player_cards']) > 21:
-        return 0
-    return 1
+    return
 
 
 def blackjack():
@@ -64,35 +64,41 @@ def blackjack():
     if(calculate_score(game_cards["dealer_cards"]) == 0):
         print("\n\nDealer Wins\n\n")
         time.sleep(3)
-        blackjack()
+        return
     elif (calculate_score(game_cards["player_cards"]) == 0):
         print("\n\nPlayer Wins\n\n")
         time.sleep(3)
-        blackjack()        
+        return
     else:
-        print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(calculate_score(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards'][0]}] ====> Total: {game_cards['dealer_cards'][0]}\n\n")
+        print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards'][0]}, - ] ====> Total: {game_cards['dealer_cards'][0]}\n\n")
 
-    if input("-h- for HIT , -s- for stay: ") == "h":
+    deal_another_card = input("-h- for HIT , -s- for stay: ")
+
+    while deal_another_card == "h":
         deal_card("player_cards")
         game_update()
+        
+        deal_another_card =  input("-h- for HIT , -s- for stay: ")
+    
 
-    else:
-        while (calculate_score(game_cards["dealer_cards"]) < 17):
-            deal_card("dealer_cards")
+    while (calculate_score(game_cards["dealer_cards"]) < 17):
+        deal_card("dealer_cards")
 
-    if(compare_scores(calculate_score(game_cards["dealer_cards"])),calculate_score(game_cards["player_cards"])) == 0:
+    if(compare_scores(sum(game_cards["dealer_cards"]),sum(game_cards["player_cards"])) == 0):
+        game_update()
         print("\n\nDealer Wins\n\n")
         time.sleep(3)
-        blackjack()
-    elif (compare_scores(calculate_score(game_cards["dealer_cards"])),calculate_score(game_cards["player_cards"]) ) == 1:
+    elif (compare_scores(sum(game_cards["dealer_cards"]),sum(game_cards["player_cards"])) == 1):
+        game_update()
         print("\n\nPlayer Wins\n\n")
         time.sleep(3)
     else:
+        game_update()
         print("\n\nDRAW\n\n")
         time.sleep(3)
-        blackjack()
 
 blackjack()
 while (input("Do you want to play again? Enter -n- for yes and -y- for no: ") == "y"):
+    game_cards = {"dealer_cards": [], "player_cards": []}
     blackjack()
 
