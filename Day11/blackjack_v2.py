@@ -1,6 +1,7 @@
 import random
 import time
 import math
+from art import *
 from os import system as sys
 import blackjack_assets
 
@@ -53,9 +54,9 @@ def blackjack():
     time.sleep(0.5)
     print(blackjack_assets.black_jack_logo)
     time.sleep(0.5)
-    print("Welcome to BlackJack\n")
+    print("             Welcome to BlackJack\n")
     time.sleep(0.5)
-    print("Get Your Money Ready!\n")
+    print("             Get Your Money Ready!\n\n\n\n\n")
     time.sleep(1)
     bet_size = int(input("Place Your Bet: $"))
     
@@ -65,16 +66,16 @@ def blackjack():
 
 
     if(calculate_score(game_cards["dealer_cards"]) == 0):
-        print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
-        print("\n\nDealer Wins\n\n")
+        print(f"\n\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\n\nsThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
+        tprint("\n\nDealer Wins\n\n")
         total_balance -= bet_size
         time.sleep(1)
         print(f"Total Balance =====> {total_balance}\n\n")
         time.sleep(3)
         return
     elif (calculate_score(game_cards["player_cards"]) == 0):
-        print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
-        print("\n\nPlayer Wins\n\n")
+        print(f"\n\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
+        tprint("\n\nPlayer Wins\n\n")
         total_balance += bet_size * 2
         time.sleep(1)
         print(f"Total Balance =====> {total_balance}\n\n")
@@ -99,7 +100,7 @@ def blackjack():
     if(compare_scores(sum(game_cards["dealer_cards"]),sum(game_cards["player_cards"])) == 0):
         print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
         time.sleep(1)
-        print("\n\nDealer Wins\n\n")
+        tprint("\n\nDealer Wins\n\n")
         total_balance -= bet_size
         time.sleep(1)
         print(f"Total Balance =====> {total_balance}\n\n")
@@ -107,7 +108,7 @@ def blackjack():
     elif (compare_scores(sum(game_cards["dealer_cards"]),sum(game_cards["player_cards"])) == 1):
         print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
         time.sleep(1)
-        print("\n\nPlayer Wins\n\n")
+        tprint("\n\nPlayer Wins\n\n")
         total_balance += bet_size * 2
         time.sleep(1)
         print(f"Total Balance =====> {total_balance}\n\n")
@@ -115,7 +116,7 @@ def blackjack():
     else:
         print(f"\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
         time.sleep(1)
-        print("\n\nDRAW\n\n")
+        tprint("\n\nDRAW\n\n")
         time.sleep(3)
 
 blackjack()
