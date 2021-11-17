@@ -9,12 +9,12 @@ def number_guessing():
     number = random.randint(1,100)
     attempts = 0
     sys('cls')
-    tprint("Welcome to")
+    tprint("         Welcome to")
     time.sleep(1)
     tprint("Number Guessing")
     time.sleep(1)
-    tprint("Game")
-    time.sleep(1)
+    tprint("                           Game")
+    time.sleep(2)
     difficulty = input("\n\nPlease Choose Your Difficulty. Enter -easy- or -hard- :  ")
     
     if difficulty == 'hard':
@@ -32,7 +32,7 @@ def number_guessing():
             time.sleep(1.5)
             return
         elif current_guess > number:
-            print("\nToo High!\nTry Again!")
+            print(f"\nToo High!\n\nTry Again!\n\nAttempts left: {attempts}")
             attempts -= 1
             time.sleep(1.5)
             current_guess = int(input("\nMake a guess :  "))
