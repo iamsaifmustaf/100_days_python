@@ -1,6 +1,6 @@
 from os import system as sys
 import time
-from art import *
+#from art import *
 import assets
 
 water = 1000
@@ -40,9 +40,11 @@ def handle_payment(drink):
     money_inserted = float((quarters * 0.25) + (dimes * 0.1) + (nickles * 0.05) + (pennies * 0.01))
     if (money_required - money_inserted) < 0:
         print(f"Here is ${abs(money_required - money_inserted)} in change.") 
+        time.sleep(1)
         total_balance += money_required
         return
     else:
+        print("\n\nSorry, your change was not enough to purchase this item. \n\nYour money has been refunded \n\nPlease Try Again!\n\n\n")
         return -1
 
 def handle_inventory(drink):
@@ -54,6 +56,7 @@ def handle_inventory(drink):
     coffee_required = coffee_list[drink]['coffee']
     if(water < water_required or milk < milk_required or coffee < coffee_required):
         print("\n\n\nResources low at this time\nPlease Try Again Later! \nSorry for the Inconvenience!\n\n\n")
+        time.sleep(3)
         sys('cls')
         return -1
     else:
@@ -64,30 +67,35 @@ def handle_inventory(drink):
 
 
 def coffee_machine():
-    tprint('WELCOME')
+    global water
+    global milk
+    global coffee
+    global total_balance
+    print('WELCOME')
     time.sleep(1)
-    tprint('TO')
+    print('TO')
     time.sleep(1)
     print(assets.coffee)
-    tprint("Coffee Machine")
+    print("Coffee Machine")
     time.sleep(2)
 
     choice = input("\n\n\nWhat would you like? (espresso/latte/cappuccino): ")
 
     if(choice == "report"):
-        print(f"\n\nWater: {water}\nMilk: {milk}\nCoffee: {coffee}\nTotal Balance: ${float(total_balance)}\n\n")
+        print(f"\n\nWater: {water}\nMilk: {milk}\nCoffee: {coffee}\nTotal Balance: ${float(total_balance)}\n\n\n")
         return
     elif(choice == "off"):
         exit()
     elif(choice == "espresso" or choice == "latte" or choice == "cappuccino"):
-        enough_resources = handle_inventory(choice)
         enough_money = handle_payment(choice)
-        if enough_resources == -1 or enough_money == -1:
+        if enough_money == -1:
             return
-        print(f"Enjoy Your {choice}!\nCome Back Again!")
-    elif(handle_payment(choice) == 1):
-        print("\n\nSorry, your change was not enough to purchase this item. \n\n Your money has been refunded \n\nPlease Try Again!")
-        return
+        enough_resources = handle_inventory(choice)
+        if enough_resources == -1:
+            return
+
+        print(f"\nEnjoy Your {choice}!\n\nCome Back Again!")
+        time.sleep(2)
 
 
 coffee_machine()
