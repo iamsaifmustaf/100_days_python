@@ -25,7 +25,7 @@ def higher_lower():
     while True:
         sys('cls')
         print(f"Your Current Score is : {score}\n\n")
-        print(f"\n\nCompare A: {choices[0]['name']}, {choices[0]['description']} from {choices[0]['country']}")
+        print(f"\nCompare A: {choices[0]['name']}, {choices[0]['description']} from {choices[0]['country']}")
         time.sleep(2)
         print(assets.vs)
         print(f"\n\nAgainst B: {choices[1]['name']}, {choices[1]['description']} from {choices[1]['country']}")
