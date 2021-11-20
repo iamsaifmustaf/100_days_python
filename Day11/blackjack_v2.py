@@ -66,7 +66,8 @@ def blackjack():
 
 
     if(calculate_score(game_cards["dealer_cards"]) == 0):
-        print(f"\n\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\n\nsThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
+        print(f"\n\nYour cards are {game_cards['player_cards']}    ====> Total: {str(sum(game_cards['player_cards']))}\n\n\nThe Dealer cards are [{game_cards['dealer_cards']}] ====> Total: {sum(game_cards['dealer_cards'])}\n\n")
+        time.sleep(2)
         tprint("\n\nDealer Wins\n\n")
         total_balance -= bet_size
         time.sleep(1)
