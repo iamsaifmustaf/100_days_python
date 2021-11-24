@@ -6,10 +6,10 @@ from quiz_brain import QuizBrain
 from data import question_data
 
 def quizbrain():
+    
     question_bank = []
-
     for item in question_data:
-        question_bank.append(Question(item['text'], item['answer']))
+        question_bank.append(Question(item['question'], item['correct_answer']))
 
     tprint("WELCOME")
     time.sleep(1)
@@ -27,6 +27,6 @@ def quizbrain():
     tprint("\n\n--- GAME OVER ---\n\n")
 
 quizbrain()
-while (input("Do you want to play again? Enter -n- for yes and -y- for no: ") == "y"):
+while (input("Do you want to play again? Enter -n- for yes and -y- for no: ").lower() == "y"):
     sys('cls')
     quizbrain()
