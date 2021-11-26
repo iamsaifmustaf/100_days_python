@@ -19,6 +19,7 @@ def turn_left():
     tim.left(10)
 
 def turtle_race():
+    user_bet = screen.textinput(title="Who Will Win This Race?",prompt="Which color turtle you think will win the race? ")
     system('cls')
     green = Turtle()
     red = Turtle()
@@ -58,7 +59,11 @@ def turtle_race():
             turtle.goto(((turtle.xcor()+(randint(1,10))),turtle.ycor()))
             if turtle.xcor() > 300:
                 print(f"{str(turtle.color()[0]).upper()} turtle won the race!")
-                sleep(3)
+                sleep(1)
+                if str(turtle.color()[0]).lower() == user_bet.lower():
+                    print('\nYou made the right guess!')
+                else:
+                    print('\nYou made  the wrong guess!')
                 return()
     
         
