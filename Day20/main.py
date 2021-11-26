@@ -1,5 +1,6 @@
 from turtle import Screen, Turtle
 import time
+from snake import Snake
 
 # Create Screen and set bg color, size and title
 
@@ -9,32 +10,18 @@ screen.bgcolor("black")
 screen.title("Snake Game")
 screen.tracer(0)
 
-
-def snake_game():
-    #initialize snake body and starting position
-    snake_body = []
-    starting_postions = [(0, 0), (-20, 0), (-40, 0)]
-
-    #create starting squares 
-    for position in starting_postions:
-        square = Turtle()
-        square.pu()
-        square.shape("square")
-        square.color("white")
-        square.goto(position)
-        snake_body.append(square)
-
-    game_is_on = True
-    while game_is_on:
-        screen.update()
-        time.sleep(0.1)
-        #moving snake
-        for square_num in range(len(snake_body) - 1, 0 , -1):
-            snake_body[square_num].goto(snake_body[square_num - 1].pos())
-        snake_body[0].forward(20)
+snake = Snake()
+screen.listen()
+screen.onkey(snake.move_up,"Up")
+screen.onkey(snake.move_down,"Down")
+screen.onkey(snake.move_left,"Left")
+screen.onkey(snake.move_right,"Right")
 
 
-snake_game()
-
+game_is_on = True
+while game_is_on:
+    screen.update()
+    time.sleep(0.1)
+    snake.move()
 
 screen.exitonclick()
