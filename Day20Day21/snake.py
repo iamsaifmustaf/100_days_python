@@ -16,15 +16,27 @@ class Snake:
         self.create_snake()
         self.head = self.snake_body[0]
 
+    def exit_game(self):
+        exit()
 
     def create_snake(self):
         for position in STARTING_POSITIONS:
-            square = Turtle()
-            square.pu()
-            square.shape("square")
-            square.color("white")
-            square.goto(position)
-            self.snake_body.append(square)
+            self.add_square(position)
+
+    def add_square(self,position):
+        ##add new square to snake
+        square = Turtle()
+        square.shape("square")
+        square.color("white")
+        square.pu()
+        square.speed(0)
+        square.goto(position)
+        self.snake_body.append(square)
+    
+    def extend(self):
+        self.add_square(self.snake_body[-1].pos())
+
+
 
     def move(self):
         for square_num in range(len(self.snake_body) - 1, 0 , -1):
