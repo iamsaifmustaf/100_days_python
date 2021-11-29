@@ -36,8 +36,6 @@ class Snake:
     def extend(self):
         self.add_square(self.snake_body[-1].pos())
 
-
-
     def move(self):
         for square_num in range(len(self.snake_body) - 1, 0 , -1):
             self.snake_body[square_num].goto(self.snake_body[square_num - 1].pos())
